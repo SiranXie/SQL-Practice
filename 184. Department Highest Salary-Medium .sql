@@ -1,4 +1,4 @@
-184. Department Highest Salary-Medium
+#184. Department Highest Salary-Medium
 
 ###SQL Schema
 
