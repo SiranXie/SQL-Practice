@@ -1,0 +1,46 @@
+### SQL Schema
+DROP TABLE IF EXISTS Person;
+Create table Person 
+(
+    Id int, 
+    Email varchar(255)
+    );
+#Truncate table Person
+insert into Person  values ('1', 'a@b.com'), ('2', 'c@d.com'), ('3', 'a@b.com');
+
+
+
+`Write a SQL query to find all duplicate emails in a table named Person.
+
++----+---------+
+| Id | Email   |
++----+---------+
+| 1  | a@b.com |
+| 2  | c@d.com |
+| 3  | a@b.com |
++----+---------+
+For example, your query should return the following for the above table:
+
++---------+
+| Email   |
++---------+
+| a@b.com |
++---------+
+Note: All emails are in lowercase.`
+
+
+#Solution1: # Using AGGREGATE FUNCTION COUNT the occurance of the Email in the column.
+
+SELECT Email
+FROM Person
+GROUP BY Email
+HAVING COUNT(Email) >1;
+
+
+
+
+# Solution2:      # Using Inner Join to compare records that has the same email with different Id Number.
+SELECT DISTINCT P1.Email
+FROM Person P1
+INNER JOIN Person P2
+WHERE P1.Email = P2.Email AND P1.Id != P2.Id;
